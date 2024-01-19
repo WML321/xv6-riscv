@@ -11,6 +11,8 @@ int main(int argc, char *argv[]){
 	}
 	char *misc = argv[1];
 	int sec = atoi(misc);
-	exit(sleep(sec));
+	int result = sleep(sec);
+	printf("exit code %d\n", result);
+	exit(result);
 }
 
