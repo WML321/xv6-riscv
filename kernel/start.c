@@ -18,7 +18,7 @@ extern void timervec();
 
 // entry.S jumps here in machine mode on stack0.
 void
-start()
+start() // 启动只在Machine Mode模式执行的配置，并切换到Supervisor Mode
 {
   // set M Previous Privilege mode to Supervisor, for mret.
   unsigned long x = r_mstatus();
@@ -44,6 +44,8 @@ start()
   w_pmpcfg0(0xf);
 
   // ask for clock interrupts.
+  // 在进入superv mode之前，会产生一个时钟中断，原文中是这么说的：
+  // it programs the clock chip to generate timer interrupts
   timerinit();
 
   // keep each CPU's hartid in its tp register, for cpuid().
@@ -51,7 +53,10 @@ start()
   w_tp(id);
 
   // switch to supervisor mode and jump to main().
-  asm volatile("mret");
+  asm volatile("mret"); // 这里涉及到mret和ret的区别，
+  // start，这个函数本身是没有return的
+  // start函数做的事情：在寄存器mstatus中设置了supervisor mode，设置了main函数的地址（通过将该地址写入mepc寄存器中），在supervisor mode
+  // 中禁用虚拟地址（通过向页表寄存器satp中写入0），将所有的中断和异常都交给了supervisor mode
 }
 
 // arrange to receive timer interrupts.
