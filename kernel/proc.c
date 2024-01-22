@@ -229,6 +229,9 @@ uchar initcode[] = {
 };
 
 // Set up first user process.
+// 会执行user/initcode.S，通过exec重新进入内核中
+// exec的特性是，一旦执行，就会产生新的进程，并且非报错情况下，不会再返回调用函数中（在此，即userinit中）
+// 
 void
 userinit(void)
 {
