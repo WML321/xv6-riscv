@@ -82,6 +82,7 @@ struct trapframe {
 enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
 // Per-process state
+// 进程状态切片
 struct proc {
   struct spinlock lock;
 
