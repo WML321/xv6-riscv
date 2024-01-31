@@ -1,4 +1,5 @@
 // init: The initial user-level program
+// 由kernel/proc.c中的userinit函数执行exec后，来到此处，开启一个控制台，并设置0，1，2三个文件描述符，用以开启shell。
 
 #include "kernel/types.h"
 #include "kernel/stat.h"

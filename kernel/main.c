@@ -28,7 +28,7 @@ main()
     iinit();         // inode table
     fileinit();      // file table
     virtio_disk_init(); // emulated hard disk
-    userinit();      // first user process
+    userinit();      // first user process, 在初始化了一些设备和subsystem后，执行该函数，该函数定义在kernel/proc.c中
     __sync_synchronize();
     started = 1;
   } else {

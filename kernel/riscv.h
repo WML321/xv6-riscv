@@ -360,4 +360,6 @@ typedef uint64 *pagetable_t; // 512 PTEs
 // MAXVA is actually one bit less than the max allowed by
 // Sv39, to avoid having to sign-extend virtual addresses
 // that have the high bit set.
+// 最大虚拟地址, 2^38 - 1
+// 指针是64位，但是硬件只能使用低39位，而xv6只用了其中的38位
 #define MAXVA (1L << (9 + 9 + 9 + 12 - 1))
