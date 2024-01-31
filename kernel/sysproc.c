@@ -27,6 +27,17 @@ sys_fork(void)
   return fork();
 }
 
+uint64 sys_trace(void){
+  int mask;
+ // if(argint(0, &mask)<0){
+ //   return -1;
+ // }
+  argint(0, &mask);
+  //myproc()->mask = mask;
+  //return 0;
+  return trace(mask);
+}
+
 uint64
 sys_wait(void)
 {

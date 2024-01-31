@@ -298,6 +298,7 @@ fork(void)
     return -1;
   }
   np->sz = p->sz;
+  np->mask = p->mask;
 
   // copy saved user registers.
   *(np->trapframe) = *(p->trapframe);
@@ -327,7 +328,11 @@ fork(void)
 
   return pid;
 }
-
+int trace(int mask){
+  struct proc *p = myproc();
+  p->mask=mask;
+  return 0;
+}
 // Pass p's abandoned children to init.
 // Caller must hold wait_lock.
 void
