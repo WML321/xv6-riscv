@@ -10,7 +10,7 @@ uint64
 sys_exit(void)
 {
   int n;
-  argint(0, &n);
+  argint(0, &n); // 总寄存器a0中取出内容，并以int的形式给了参数n
   exit(n);
   return 0;  // not reached
 }
@@ -31,7 +31,7 @@ uint64
 sys_wait(void)
 {
   uint64 p;
-  argaddr(0, &p);
+  argaddr(0, &p); // 从a0寄存器中取出内容，以地址的形式给了p
   return wait(p);
 }
 

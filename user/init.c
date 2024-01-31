@@ -32,7 +32,7 @@ main(void)
       exit(1);
     }
     if(pid == 0){
-      exec("sh", argv);
+      exec("sh", argv); // 在fork出的子进程中打开shell
       printf("init: exec sh failed\n");
       exit(1);
     }

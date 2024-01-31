@@ -36,6 +36,7 @@ uint strlen(const char*);
 void* memset(void*, int, uint);
 void* malloc(uint);
 void free(void*);
-int atoi(const char*);
+int atoi(const char*); // 其实，这里我有个问题的，在写trace时，有一个mask值是所有位全是1，那是32位的一个值，int类型是放不下的
+// 但是只有这一个转换函数
 int memcmp(const void *, const void *, uint);
 void *memcpy(void *, const void *, uint);
